@@ -1,0 +1,14 @@
+<div class="sort-dropdown">
+    <button class="sort-btn" (click)="toggleDropdown()">
+        Sort
+    </button>
+
+    <div class="sort-dropdown__menu" *ngIf="isOpen">
+        <button class="sort-dropdown__item" (click)="sort('asc')">
+            Name (A to Z)
+        </button>
+        <button class="sort-dropdown__item" (click)="sort('desc')">
+            Name (Z to A)
+        </button>
+    </div>
+</div>

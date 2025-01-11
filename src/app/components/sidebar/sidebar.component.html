@@ -1,0 +1,12 @@
+<div class="sidebar">
+    <div class="sidebar__section">
+        <h3 class="sidebar__title">Categories</h3>
+        <div class="sidebar__categories">
+            <div *ngFor="let category of categories" class="sidebar__category"
+                [class.sidebar__category--selected]="category.selected">
+                <span class="sidebar__category-name">{{ category.name }}</span>
+                <span *ngIf="category.selected" class="sidebar__category-icon">✓</span>
+            </div>
+        </div>
+    </div>
+</div>

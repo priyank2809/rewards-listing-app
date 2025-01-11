@@ -1,0 +1,100 @@
+<div class="listing">
+    <app-header></app-header>
+
+    <main class="listing__main">
+        <!-- Search Section -->
+        <div class="listing__search-section">
+            <h2>Search</h2>
+            <div class="search-container">
+                <i class="fas fa-search search-icon"></i>
+                <input type="text" placeholder="Search" (input)="onSearch($event)">
+            </div>
+        </div>
+
+        <!-- Applied Filters -->
+        <div class="listing__filters">
+            <div class="filters-content">
+                <span class="filters-label">Applied Filters:</span>
+                <div class="filter-tag">
+                    e-Voucher
+                    <i class="fas fa-times"></i>
+                </div>
+                <div class="clear-filters">
+                    Clear Filters
+                    <i class="fas fa-times"></i>
+                </div>
+            </div>
+        </div>
+
+        <div class="listing__content">
+            <!-- Categories Sidebar -->
+            <aside class="listing__sidebar">
+                <div class="categories">
+                    <h3>Categories</h3>
+                    <ul>
+                        <li class="active">
+                            e-Voucher
+                            <i class="fas fa-check"></i>
+                        </li>
+                        <li>Products</li>
+                        <li>Evergreen</li>
+                        <li>Fashion & Retail</li>
+                    </ul>
+                </div>
+            </aside>
+
+            <!-- Results Section -->
+            <div class="listing__results">
+                <div class="results-header">
+                    <div class="results-count">{{ rewards.length }} results found</div>
+                    <button class="sort-btn" (click)="toggleSort()">Sort</button>
+                </div>
+
+                <div class="rewards-grid">
+                    <app-reward-card *ngFor="let reward of rewards" [reward]="reward">
+                    </app-reward-card>
+                </div>
+
+                <!-- Page Count Section -->
+                <div class="page-section">
+                    <div class="separator"></div>
+                    <div class="page-count">
+                        <div class="count-select">
+                            21
+                            <i class="fas fa-chevron-down"></i>
+                        </div>
+                        <span class="per-page">per page</span>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </main>
+
+    <app-footer></app-footer>
+
+    <!-- Sort Overlay and Drawer -->
+    <div class="sort-overlay" *ngIf="showSort" (click)="toggleSort()"></div>
+    <div class="sort-drawer" [class.open]="showSort">
+        <div class="sort-drawer__content">
+            <div>
+                <div class="sort-drawer__header">
+                    <h4>Filter By</h4>
+                    <button class="reset-btn" (click)="resetSort()">Reset All</button>
+                </div>
+
+                <div class="sort-drawer__section">
+                    <h4>Sort</h4>
+                    <div class="sort-buttons">
+                        <button [class.active]="sortOrder === 'asc'" (click)="sort('asc')">
+                            A to Z
+                        </button>
+                        <button [class.active]="sortOrder === 'desc'" (click)="sort('desc')">
+                            Z to A
+                        </button>
+                    </div>
+                </div>
+            </div>
+            <button class="apply-btn" (click)="applySorting()">Apply</button>
+        </div>
+    </div>
+</div>
